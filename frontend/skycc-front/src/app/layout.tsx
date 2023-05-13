@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import MainHead from '@/components/MainHead'
 import StyledComponentsRegistry from '@/lib/registry'
+import { QueryClientProvider, useQueryClient } from '@tanstack/react-query'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,8 +17,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const queryClient = useQueryClient()
   return (
     <html lang="en">
+      <QueryClientProvider client={queryClient}>
       <body className={inter.className}>
       <StyledComponentsRegistry>
         <MainTemplate>
@@ -26,6 +30,7 @@ export default function RootLayout({
         </MainTemplate>
       </StyledComponentsRegistry>
         </body>
+      </QueryClientProvider>
     </html>
   )
 }

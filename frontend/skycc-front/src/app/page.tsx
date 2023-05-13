@@ -4,9 +4,24 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import Title from '@/components/Title'
 import styled from "styled-components";
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { stt } from '@/api/stt';
+import { useCallback } from 'react';
 
 
 export default function Home() {
+  const query = useMutation(
+    ['stt'],
+    (data:any) => stt(data)
+  )
+
+  const data = ''
+  const PostStt = useCallback(
+    async () => {
+      query.mutate(data, {})
+    },[query])
+
+
   return (
 
     <H1>
