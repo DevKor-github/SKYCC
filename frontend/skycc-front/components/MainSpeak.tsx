@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useRecorder } from "react-recorder-voice";
 import axios from "axios";
+import Image from "next/image";
+import human from "../public/human.svg";
 
 const Button = styled.button`
     margin: 0 auto;
@@ -57,19 +59,29 @@ export function MainSpeak() {
         startRecording,
     } = useRecorder();
 
+    // MediaRecorder.isTypeSupported("audio/wav;codecs=MS_PCM");
+
     useEffect(() => {
         console.log(recordingStatus);
         if (recordingStatus === "save" && audioData !== null) {
             // console.log(audioData);
+            console.log(audioData);
             const formData = new FormData();
-            formData.append("file", audioData, "audio.wav");
-            axios.post("http://3.36.128.49", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            formData.append("file", audioData, "audio.webm");
+            axios
+                .post("http://3.36.128.49", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((r) => {
+                    console.log(r);
+                    if (r.statusText === "Created") {
+                        fetch("/api/slack");
+                    }
+                });
         }
-    }, [recordingStatus]);
+    }, [audioData]);
     return (
         <div>
             <Button
@@ -96,15 +108,16 @@ export function MainSpeak() {
             </Button>
 
             <div
-                style={{ height: "260px", width: "360px", overflow: "hidden" }}
+                style={{ height: "270px", width: "360px", overflow: "hidden" }}
             >
-                <img
+                <Image
                     style={{
                         margin: "0 auto",
                         display: "block",
                         marginTop: "40px",
                     }}
-                    src="./human.svg"
+                    alt="human"
+                    src={human}
                 />
             </div>
         </div>
