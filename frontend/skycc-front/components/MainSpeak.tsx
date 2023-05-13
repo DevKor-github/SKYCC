@@ -78,7 +78,7 @@ export function MainSpeak({ loading, setLoading }: Prop) {
             formData.append("file", audioData, "audio.webm");
 
             axios
-                .post("http://3.36.128.49", formData, {
+                .post(process.env.NEXT_PUBLIC_SERVER_URL + "", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
