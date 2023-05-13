@@ -3,8 +3,9 @@ import { ChatGptService } from './chatgpt/chatgpt.service';
 import { ConfigModule } from '@nestjs/config';
 import { ReservationModule } from './reservation/reservation.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Uploads3Module } from './uploads3/uploads3.module';
 import { SttService } from './stt/stt.service';
+import { AppController } from './app.controller';
+import { Uploads3Service } from './uploads3/uploads3.service';
 
 @Module({
   imports: [
@@ -20,9 +21,8 @@ import { SttService } from './stt/stt.service';
       synchronize: true,
     }),
     ReservationModule,
-    Uploads3Module,
   ],
-  controllers: [],
-  providers: [ChatGptService, SttService],
+  controllers: [AppController],
+  providers: [ChatGptService, SttService, Uploads3Service],
 })
 export class AppModule {}
