@@ -1,26 +1,30 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SttService } from './stt.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 const params = {
-  TranscriptionJobName: "test",
+  TranscriptionJobName: "test-1",
   LanguageCode: "ko-KR", // For example, 'en-US'
-  MediaFormat: "m4a", // For example, 'wav'
+  MediaFormat: "mp4", // For example, 'wav'
   Media: {
-      MediaFileUri: "",
+      MediaFileUri: "https://s3-skycc-stt.s3.ap-northeast-2.amazonaws.com/0002badb-3385-4e6b-9842-2f8cff817168.m4a",
     // For example, "https://transcribe-demo.s3-REGION.amazonaws.com/hello_world.wav"
   },
-  OutputBucketName: "test"
+  OutputBucketName: "s3-skycc-stt"
 };
 
 describe('SttService', () => {
   let service: SttService;
+  let configService: ConfigService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot()],
       providers: [SttService],
     }).compile();
 
     service = module.get<SttService>(SttService);
+    configService = module.get<ConfigService>(ConfigService);
   });
 
   it('should be defined', async () => {
