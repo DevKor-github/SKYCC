@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Post,
   UploadedFile,
@@ -26,6 +27,11 @@ export class AppController {
     private readonly gptService: ChatGptService,
     private readonly reservationService: ReservationService,
   ) {}
+
+  @Get('/condition')
+  async a() {
+    return 'hello world!';
+  }
 
   @Post('')
   @UseInterceptors(FileInterceptor('file'))
