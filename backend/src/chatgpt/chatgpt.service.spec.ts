@@ -22,6 +22,7 @@ describe('ChatGptService', () => {
   it('should be defined', async () => {
     const prompt = '5월 23일 오전 8시 서울에서 부산으로 가는 버스를 예약해줘'
     const completion = await service.complete(prompt);
+    console.log(typeof completion)
     console.log(completion)
     expect(completion).toBeDefined();
   });
