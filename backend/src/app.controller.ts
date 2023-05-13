@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Param,
@@ -42,7 +43,9 @@ export class AppController {
     };
     await this.sttService.startTranscriptionJob(params);
     const data = await this.gets3Service.gets3(uid + '.json');
+    console.log(data);
     const result = await this.gptService.complete(data);
+    console.log(result);
     const time = new Date(result.date + ' ' + result.time);
     const dto = new FindDataReqDto(time, result.departure, result.destination);
     try {
@@ -64,5 +67,10 @@ export class AppController {
   async deleteReservation(@Param('id') id: number) {
     await this.reservationService.cancelReservation(id);
     return STATUS_CODES[200];
+  }
+
+  @Post('/json')
+  async json(@Body('item') item: any) {
+    this.reservationService.putJson(item);
   }
 }

@@ -109,4 +109,41 @@ export class ReservationService {
     await this.transportationRepository.save(reservation.transportation);
     await this.transportationRepository.delete(reservation);
   }
+
+  async putJson(datas: any[]) {
+    const transportations = datas.map((data) => {
+      const transportation = new TransportationEntity();
+      transportation.departureLocation = data.depplacename;
+      transportation.arrivalLocation = data.arrplacename;
+      let deptime = data.depplandtime.toString();
+      deptime =
+        deptime.substring(0, 4) +
+        '-' +
+        deptime.substring(4, 6) +
+        '-' +
+        deptime.substring(6, 8) +
+        ' ' +
+        deptime.substring(8, 10) +
+        ':' +
+        deptime.substring(10, 12);
+      transportation.departureTime = deptime;
+      let arrtime = data.arrplandtime.toString();
+      arrtime =
+        arrtime.substring(0, 4) +
+        '-' +
+        arrtime.substring(4, 6) +
+        '-' +
+        arrtime.substring(6, 8) +
+        ' ' +
+        arrtime.substring(8, 10) +
+        ':' +
+        arrtime.substring(10, 12);
+
+      transportation.arrivalTime = arrtime;
+      transportation.price = data.adultcharge;
+      transportation.remainingSeats = 20;
+      return transportation;
+    });
+    await this.transportationRepository.save(transportations);
+  }
 }
