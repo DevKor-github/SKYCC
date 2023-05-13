@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ReservationModule } from './reservation/reservation.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Uploads3Module } from './uploads3/uploads3.module';
+import { SttService } from './stt/stt.service';
 
 @Module({
   imports: [
@@ -22,6 +23,6 @@ import { Uploads3Module } from './uploads3/uploads3.module';
     Uploads3Module,
   ],
   controllers: [],
-  providers: [ChatGptService],
+  providers: [ChatGptService, SttService],
 })
 export class AppModule {}
