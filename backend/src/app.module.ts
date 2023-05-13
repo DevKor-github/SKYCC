@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ChatGptService } from './chatgpt/chatgpt.service';
 import { ConfigModule } from '@nestjs/config';
-import { ReservationModule } from './reservation/reservation.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SttService } from './stt/stt.service';
 import { AppController } from './app.controller';
 import { Uploads3Service } from './uploads3/uploads3.service';
 import { Gets3Service } from './gets3/gets3.service';
-
+import { ReservationService } from './reservation/reservation.service';
+import { TransportationEntity } from './reservation/entity/transportation.entity';
+import { ReservationEntity } from './reservation/entity/reservation.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
@@ -21,9 +22,15 @@ import { Gets3Service } from './gets3/gets3.service';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ReservationModule,
+    TypeOrmModule.forFeature([TransportationEntity, ReservationEntity]),
   ],
   controllers: [AppController],
-  providers: [ChatGptService, SttService, Uploads3Service, Gets3Service],
+  providers: [
+    ChatGptService,
+    SttService,
+    Uploads3Service,
+    Gets3Service,
+    ReservationService,
+  ],
 })
 export class AppModule {}

@@ -17,7 +17,7 @@ describe('ChatGptService', () => {
   });
 
   it('should be defined', async () => {
-    const prompt = '오월 십오일 서울에서 부산가는 기차아홉시 편예매해줘.'
+    const prompt = '오월 십오일 서울에서 부산가는 기차아홉시 편예매해줘.';
     const completion = await service.complete(prompt);
     console.log(typeof completion);
     console.log(completion);

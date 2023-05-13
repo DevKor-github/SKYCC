@@ -34,13 +34,14 @@ export class ReservationService {
       // TODO : 유사 데이터 찾아 넘기기
       throw new Error('해당하는 데이터가 없습니다.');
     }
-
+    return new FindDataResDto(transportation);
+    /*
     transportation.remainingSeats -= 1;
     await this.transportationRepository.save(transportation);
-
+  
     const reservation = new ReservationEntity();
     reservation.transportation = transportation;
-    await this.reservationRepository.save(reservation);
+    await this.reservationRepository.save(reservation);*/
   }
 
   // TODO 유사 데이터 찾는 함수 구현 - HOW? => 출발시간 유사 - 오름차순
