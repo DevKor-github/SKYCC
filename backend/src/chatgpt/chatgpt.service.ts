@@ -1,14 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Configuration, OpenAIApi, ChatCompletionResponseMessage } from 'openai';
-
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ChatGptService {
     private readonly openai: OpenAIApi;
-
-    constructor() {
+    constructor(
+        private readonly configService: ConfigService
+    ) {
         const configuration = new Configuration({
-            apiKey: '',
+            apiKey: this.configService.get('OPENAI_KEY'),
         });
         this.openai = new OpenAIApi(configuration);
     }
