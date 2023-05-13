@@ -1,0 +1,38 @@
+import React from 'react';
+import styled from 'styled-components';
+
+
+const UpperBar = styled.div`
+    width: 360px;
+    height: 80px;
+    margin: 0 0 63px;
+    background-color: #fa7d37;
+    margin: 0 auto;
+
+    h1 {
+        width: 135px;
+        height: 68px;
+        margin: 20px 225px 55px 0;
+        font-family: 210Sueopsigan;
+        font-size: 35px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+        padding-top: 15px;
+    }
+`;
+
+function MainHead() {
+    return (
+        <UpperBar>
+            <h1>해주야</h1>
+        </UpperBar>
+    )
+
+}
+
+export default MainHead;
