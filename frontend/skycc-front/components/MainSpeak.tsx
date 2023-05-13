@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useAudioRecorder } from "react-audio-voice-recorder";
+import { useReactMediaRecorder } from "react-media-recorder-2";
 import axios from "axios";
 
 const Button = styled.button`
@@ -46,37 +46,36 @@ const Button = styled.button`
 export function MainSpeak() {
     const [isRecording, setIsRecodring] = useState(false);
 
-    const {
-        startRecording,
-        stopRecording,
-        togglePauseResume,
-        recordingBlob,
-        // isRecording,
-        isPaused,
-        recordingTime,
-    } = useAudioRecorder();
+    // const {
+    //     startRecording,
+    //     stopRecording,
+    //     togglePauseResume,
+    //     recordingBlob,
+    //     // isRecording,
+    //     isPaused,
+    //     recordingTime,
+    // } = useAudioRecorder();
 
-    useEffect(() => {
-        if (!recordingBlob) return;
-        console.log(recordingBlob);
+    const { status, startRecording, stopRecording, mediaBlobUrl } =
+        useReactMediaRecorder({ audio: true });
 
-        // recordingBlob will be present at this point after 'stopRecording' has been called
-    }, [recordingBlob]);
+    // useEffect(() => {
+    //     if (!recordingBlob) return;
+
+    //     // recordingBlob will be present at this point after 'stopRecording' has been called
+    // }, [recordingBlob]);
 
     const onFinish = async () => {
         const formData = new FormData();
+
         //@ts-ignore
-        formData.append("file", recordingBlob); //files[0] === upload file
+        formData.append("file", mediaBlobUrl); //files[0] === upload file
         // const value = [
         //     {
         //         title: "hello",
         //         content: "wolrd",
         //     },
         // ];
-
-        // const blob = new Blob({
-        //     type: "audio/webm",
-        // });
 
         // formData.append("data", blob); // 또는  formData.append("data", JSON.stringify(value)); // JSON 형식으로 파싱.(백엔드의 요청에 따라 전송방식이 달라진다.)
         const req = await axios({
