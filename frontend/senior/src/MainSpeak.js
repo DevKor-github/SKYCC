@@ -1,17 +1,31 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { useState } from "react";
 
 const Button = styled.button`
+    margin: 0 auto;
     width: 286px;
     height: 147px;
-    margin: 79px 43px 79.7px 31px;/
+    display: block;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 61px;
+    text-align: center;
+    border: none;
+    background: #fa7d37;
     border-radius: 30px;
-    background-color: #fa7d37;
-    :hover {
-      background-color: #99c6f5;
+    margin-top: 60px;
+    &:hover {
+        background-color: #99c6f5;
+    }
+
+    &.recording {
+        background-color: #99c6f5;
     }
 `;
-    /*
+/*
     .content {
         width: 279px;
         height: 60px;
@@ -27,16 +41,43 @@ const Button = styled.button`
         color: #000;
     */
 
-
 function MainSpeak() {
+    const [isRecording, setIsRecodring] = useState(false);
     return (
-    <Button>말하기</Button>
+        <div>
+            <Button
+                onClick={(e) => {
+                    if (isRecording) {
+                        setIsRecodring(false);
+                        e.target.innerHTML = "중지";
+                        e.target.classList.add("recording");
+                    } else {
+                        setIsRecodring(true);
+                        e.target.innerText = "말하기";
+                        e.target.classList.remove("recording");
+                    }
+                }}
+            >
+                말하기
+            </Button>
+
+            <div
+                style={{ height: "260px", width: "360px", overflow: "hidden" }}
+            >
+                <img
+                    style={{
+                        margin: "0 auto",
+                        display: "block",
+                        marginTop: "40px",
+                    }}
+                    src="./human.svg"
+                />
+            </div>
+        </div>
     );
 }
 
-
 export default MainSpeak;
-
 
 /*
 

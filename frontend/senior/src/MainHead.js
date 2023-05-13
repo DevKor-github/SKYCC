@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
-
+import React from "react";
+import styled from "styled-components";
 
 const UpperBar = styled.div`
     width: 360px;
@@ -10,15 +9,15 @@ const UpperBar = styled.div`
     margin: 0 auto;
 
     h1 {
+        line-height: 60px;
         width: 135px;
         height: 68px;
         margin: 20px 225px 55px 0;
-        font-family: 210Sueopsigan;
+        font-family: "210_Sueopsigan_Regular";
         font-size: 35px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
-        line-height: normal;
         letter-spacing: normal;
         text-align: center;
         color: #000;
@@ -31,8 +30,7 @@ function MainHead() {
         <UpperBar>
             <h1>해주야</h1>
         </UpperBar>
-    )
-
+    );
 }
 
 export default MainHead;
