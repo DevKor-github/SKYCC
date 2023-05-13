@@ -7,6 +7,8 @@ import { useRecorder } from "react-recorder-voice";
 import axios from "axios";
 import Image from "next/image";
 import human from "../public/human.svg";
+import Loading from "./Loading";
+import Router, { useRouter } from "next/navigation";
 
 const Button = styled.button`
     margin: 0 auto;
@@ -46,8 +48,12 @@ const Button = styled.button`
         text-align: center;
         color: #000;
     */
+interface Prop {
+    loading: boolean;
+    setLoading: (bool: boolean) => void;
+}
 
-export function MainSpeak() {
+export function MainSpeak({ loading, setLoading }: Prop) {
     const [isRecording, setIsRecodring] = useState(false);
     const {
         audioURL,
@@ -59,6 +65,7 @@ export function MainSpeak() {
         startRecording,
     } = useRecorder();
 
+    const router = useRouter();
     // MediaRecorder.isTypeSupported("audio/wav;codecs=MS_PCM");
 
     useEffect(() => {
@@ -66,8 +73,10 @@ export function MainSpeak() {
         if (recordingStatus === "save" && audioData !== null) {
             // console.log(audioData);
             console.log(audioData);
+            setLoading(true);
             const formData = new FormData();
             formData.append("file", audioData, "audio.webm");
+
             axios
                 .post("http://3.36.128.49", formData, {
                     headers: {
@@ -82,44 +91,77 @@ export function MainSpeak() {
                 });
         }
     }, [audioData]);
+
+    useEffect(() => {
+        if (loading) {
+            setTimeout(() => {
+                router.push("/done");
+            }, 10000);
+        }
+    }, [loading]);
+
     return (
         <div>
-            <Button
-                onClick={(e) => {
-                    if (!isRecording) {
-                        setIsRecodring(true);
-                        //@ts-ignore
-                        e.target.innerHTML = "중지";
-                        //@ts-ignore
-                        e.target.classList.add("recording");
+            {audioData === null && (
+                <>
+                    <Button
+                        onClick={(e) => {
+                            if (!isRecording) {
+                                setIsRecodring(true);
+                                //@ts-ignore
+                                e.target.innerHTML = "중지";
+                                //@ts-ignore
+                                e.target.classList.add("recording");
 
-                        startRecording();
-                    } else {
-                        setIsRecodring(false);
-                        //@ts-ignore
-                        e.target.innerText = "말하기";
-                        //@ts-ignore
-                        e.target.classList.remove("recording");
-                        saveRecordedAudio();
-                    }
-                }}
-            >
-                말하기
-            </Button>
+                                startRecording();
+                            } else {
+                                setIsRecodring(false);
+                                //@ts-ignore
+                                e.target.innerText = "말하기";
+                                //@ts-ignore
+                                e.target.classList.remove("recording");
+                                saveRecordedAudio();
+                            }
+                        }}
+                    >
+                        말하기
+                    </Button>
 
-            <div
-                style={{ height: "270px", width: "360px", overflow: "hidden" }}
-            >
-                <Image
-                    style={{
-                        margin: "0 auto",
-                        display: "block",
-                        marginTop: "40px",
-                    }}
-                    alt="human"
-                    src={human}
-                />
-            </div>
+                    <div
+                        style={{
+                            height: "270px",
+                            width: "360px",
+                            overflow: "hidden",
+                        }}
+                    >
+                        <Image
+                            style={{
+                                margin: "0 auto",
+                                display: "block",
+                                marginTop: "40px",
+                            }}
+                            alt="human"
+                            src={human}
+                        />
+                    </div>
+                </>
+            )}
+            {audioData !== null && (
+                <>
+                    <h1
+                        style={{
+                            marginLeft: "90px",
+                            marginTop: "200px",
+                            width: "300px",
+                            display: "block",
+                        }}
+                    >
+                        처리중입니다
+                        <br />
+                    </h1>
+                    <Loading></Loading>
+                </>
+            )}
         </div>
     );
 }

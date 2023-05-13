@@ -3,13 +3,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-
-import { useEffect } from "react";
-
 export default function Done() {
-    useEffect(() => {
-        fetch("/api/slack");
-    }, []);
     return (
         <div>
             <H1>
@@ -53,8 +47,6 @@ const Btn = styled.button`
         color: black;
     }
 `;
-
-
 
 const H1 = styled.h1`
     width: 300px;
