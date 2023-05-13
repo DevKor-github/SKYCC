@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const MainTemplateBlock = styled.div`
     width: 360px;
-    height: 1000px;
+    height: 700px;
     flex-grow: 0;
     background-color: #fff;
     margin: 0 auto;
@@ -27,7 +27,6 @@ const MainTemplateBlock = styled.div`
     */
 `;
 
-
 const UnderBar = styled.div`
     width: 360px;
     height: 46px;
@@ -36,15 +35,13 @@ const UnderBar = styled.div`
     margin: 0 auto;
 `;
 
-
-
 function MainTemplate({ children }) {
     return (
         <>
-        <MainTemplateBlock>{children}</MainTemplateBlock>
-        <UnderBar />
+            <MainTemplateBlock>{children}</MainTemplateBlock>
+            <UnderBar />
         </>
-        );
+    );
 }
 
 export default MainTemplate;

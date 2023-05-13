@@ -1,31 +1,26 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import styles from './page.module.css'
-import Title from '@/components/Title'
+import Image from "next/image";
+import styles from "./page.module.css";
+import Title from "../components/Title";
 import styled from "styled-components";
 
-
 export default function Home() {
-  return (
-
-    <H1>
-      무엇을
-      <br/>
-      예약해드릴까요?
-    </H1>
-
-  )
+    return (
+        <H1>
+            무엇을
+            <br />
+            예약해드릴까요?
+        </H1>
+    );
 }
 
-
-const H1 = styled.h1`
+export const H1 = styled.h1`
     width: 300px;
     text-align: center;
     margin: 0 auto;
     margin-top: 63px;
 `;
-
 
 const Button = styled.button`
     margin: 0 auto;
