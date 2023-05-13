@@ -21,16 +21,18 @@ export class SttService {
         });
     }
 
-    async startTranscriptionJob(params: StartTranscriptionJobCommandInput): Promise<StartTranscriptionJobCommandOutput> {
-        try {
-            const data = await this.transcribeClient.send(
-                new StartTranscriptionJobCommand(params)
-            );
-            console.log('Transcription job started successfully');
-            console.log('Success - put', data);
-            return data
-        } catch (err) {
-        console.log('Error', err);
-        }
+  async startTranscriptionJob(
+    params: StartTranscriptionJobCommandInput,
+  ): Promise<StartTranscriptionJobCommandOutput> {
+    try {
+      const data = await this.transcribeClient.send(
+        new StartTranscriptionJobCommand(params),
+      );
+      console.log('Transcription job started successfully');
+      console.log('Success - put', data);
+      return data;
+    } catch (err) {
+      console.log('Error', err);
     }
+  }
 }
