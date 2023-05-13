@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import MainHead from '@/components/MainHead'
 import StyledComponentsRegistry from '@/lib/registry'
 import { QueryClientProvider, useQueryClient } from '@tanstack/react-query'
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,11 @@ export default function RootLayout({
   const queryClient = useQueryClient()
   return (
     <html lang="en">
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png"></link>
+        <meta name="theme-color" content="#ffffff"/>
+      </Head>
       <QueryClientProvider client={queryClient}>
       <body className={inter.className}>
       <StyledComponentsRegistry>
