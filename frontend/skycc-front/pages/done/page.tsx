@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styled from "styled-components";
-import { H1 } from "../page";
+
 
 import { useEffect } from "react";
 
@@ -52,4 +52,13 @@ const Btn = styled.button`
         text-decoration: none;
         color: black;
     }
+`;
+
+
+
+const H1 = styled.h1`
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 63px;
 `;

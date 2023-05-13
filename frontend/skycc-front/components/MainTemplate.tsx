@@ -35,7 +35,10 @@ const UnderBar = styled.div`
     margin: 0 auto;
 `;
 
-function MainTemplate({ children }) {
+interface Props {
+    children: React.ReactNode;
+}
+function MainTemplate({ children }: Props) {
     return (
         <>
             <MainTemplateBlock>{children}</MainTemplateBlock>
