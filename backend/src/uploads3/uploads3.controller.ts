@@ -13,7 +13,8 @@ export class Uploads3Controller {
     console.log(file);
     //const upload= await this.uploads3Service.upload2();
     //upload.single('file');
-    await this.uploads3Service.upload(file);
+    const url = await this.uploads3Service.upload(file);
+    return url;
   }
   @Put('/')
   async uploadSoundToS3(){
