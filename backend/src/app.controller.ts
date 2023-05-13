@@ -30,7 +30,10 @@ export class AppController {
   @Post('')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log('posted');
+    console.log(file);
     const url = await this.uploads3Service.upload(file);
+    console.log(url);
     const uid = uuidv4();
     const params: StartTranscriptionJobCommandInput = {
       TranscriptionJobName: uid,
