@@ -1,13 +1,12 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import styles from './page.module.css'
-import Title from '@/components/Title'
+import Image from "next/image";
+import styles from "./page.module.css";
+import Title from "../components/Title";
 import styled from "styled-components";
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { stt } from '@/api/stt';
 import { useCallback } from 'react';
-
 
 export default function Home() {
   const query = useMutation(
@@ -33,14 +32,12 @@ export default function Home() {
   )
 }
 
-
-const H1 = styled.h1`
+export const H1 = styled.h1`
     width: 300px;
     text-align: center;
     margin: 0 auto;
     margin-top: 63px;
 `;
-
 
 const Button = styled.button`
     margin: 0 auto;
