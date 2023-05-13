@@ -7,6 +7,8 @@ import MainHead from "./MainHead";
 import MainSpeak from "./MainSpeak";
 // import { useSpeechRecognition } from "react-speech-kit";
 import "./App.css";
+import Loading from "./Loading";
+import InfoButton from "./InfoButton"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -27,6 +29,8 @@ function App() {
                     <br />
                     예약해드릴까요?
                 </Title>
+                <Loading></Loading>
+                <InfoButton text='aa'></InfoButton>
                 <MainSpeak />
                 {/* <MainTemplate /> */}
             </MainWrapper>
