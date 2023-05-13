@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ReservationModule } from './reservation/reservation.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Uploads3Module } from './uploads3/uploads3.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
     ReservationModule,
+    Uploads3Module,
   ],
   controllers: [],
   providers: [],
