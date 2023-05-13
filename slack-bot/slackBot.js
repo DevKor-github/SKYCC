@@ -16,7 +16,7 @@ const client = new WebClient(token, {
     // Post a message to the channel, and await the result.
     // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
     const directMessageID = await client.conversations.open({
-        users: "U058B83L4TA",
+        users: "U0565FZ8X9D",
     });
 
     const result = await client.chat.postMessage({
