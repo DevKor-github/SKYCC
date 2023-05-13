@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useReactMediaRecorder } from "react-media-recorder";
+import { useAudioRecorder } from "react-audio-voice-recorder";
+import { axios } from "axios";
 
 const Button = styled.button`
     margin: 0 auto;
@@ -50,7 +51,7 @@ function MainSpeak() {
         stopRecording,
         togglePauseResume,
         recordingBlob,
-        isRecording,
+        // isRecording,
         isPaused,
         recordingTime,
     } = useAudioRecorder();
@@ -58,8 +59,35 @@ function MainSpeak() {
     useEffect(() => {
         if (!recordingBlob) return;
         console.log(recordingBlob);
+
         // recordingBlob will be present at this point after 'stopRecording' has been called
     }, [recordingBlob]);
+
+    const onFinish = async () => {
+        const formData = new FormData();
+        formData.append("file", recordingBlob); //files[0] === upload file
+        // const value = [
+        //     {
+        //         title: "hello",
+        //         content: "wolrd",
+        //     },
+        // ];
+
+        // const blob = new Blob({
+        //     type: "audio/webm",
+        // });
+
+        // formData.append("data", blob); // 또는  formData.append("data", JSON.stringify(value)); // JSON 형식으로 파싱.(백엔드의 요청에 따라 전송방식이 달라진다.)
+        await axios({
+            method: "POST",
+            url: `http://localhost:3000/`,
+            headers: {
+                "Content-Type": "multipart/form-data", // Content-Type을 반드시 이렇게 하여야 한다.
+            },
+            data: formData, // data 전송시에 반드시 생성되어 있는 formData 객체만 전송 하여야 한다.
+        });
+    };
+
     return (
         <div>
             <Button
