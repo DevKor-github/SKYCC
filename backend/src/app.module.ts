@@ -3,6 +3,7 @@ import { ChatGptService } from './chatgpt/chatgpt.service';
 import { ConfigModule } from '@nestjs/config';
 import { ReservationModule } from './reservation/reservation.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Uploads3Module } from './uploads3/uploads3.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
     ReservationModule,
+    Uploads3Module,
   ],
   controllers: [],
   providers: [ChatGptService],
