@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { stt } from "../api/stt";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import MainSpeak from "../components/MainSpeak";
 
 export default function Home() {
     const query = useMutation(["stt"], (data: any) => stt(data));
-
+    const [loading, setLoading] = useState<boolean>(false);
     const data = "";
     const PostStt = useCallback(async () => {
         query.mutate(data, {});
@@ -14,12 +14,14 @@ export default function Home() {
 
     return (
         <>
-            <H1>
-                무엇을
-                <br />
-                예약해드릴까요?
-            </H1>
-            <MainSpeak></MainSpeak>
+            {!loading && (
+                <H1>
+                    무엇을
+                    <br />
+                    예약해드릴까요?
+                </H1>
+            )}
+            <MainSpeak loading={loading} setLoading={setLoading}></MainSpeak>
         </>
     );
 }
