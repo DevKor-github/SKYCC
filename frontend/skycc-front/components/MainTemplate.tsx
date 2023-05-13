@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const MainTemplateBlock = styled.div`
     width: 360px;
-    height: 700px;
+    height: 686px;
     flex-grow: 0;
     background-color: #fff;
     margin: 0 auto;
