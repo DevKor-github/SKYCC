@@ -1,15 +1,25 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ChatGptService } from './chatgpt/chatgpt.service';
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule } from '@nestjs/config';
+import { ReservationModule } from './reservation/reservation.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    cache: true,
-    isGlobal: true,
-  })],
-  controllers: [AppController],
-  providers: [AppService, ChatGptService],
+  imports: [
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    ReservationModule,
+  ],
+  controllers: [],
+  providers: [ChatGptService],
 })
 export class AppModule {}
