@@ -1,8 +1,7 @@
 import {
-  Body,
   Controller,
   Delete,
-  Get,
+  Param,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -55,14 +54,14 @@ export class AppController {
     }
   }
 
-  @Post('/reservation')
-  async makeReservation(@Body('id') id: number) {
+  @Post('/reservation/:id')
+  async makeReservation(@Param('id') id: number) {
     await this.reservationService.makeReservation(id);
     return STATUS_CODES[201];
   }
 
-  @Delete('/reservation')
-  async deleteReservation(@Body('id') id: number) {
+  @Delete('/reservation/:id')
+  async deleteReservation(@Param('id') id: number) {
     await this.reservationService.cancelReservation(id);
     return STATUS_CODES[200];
   }
