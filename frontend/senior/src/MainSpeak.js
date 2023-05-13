@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useReactMediaRecorder } from "react-media-recorder";
 
 const Button = styled.button`
     margin: 0 auto;
@@ -43,6 +44,22 @@ const Button = styled.button`
 
 function MainSpeak() {
     const [isRecording, setIsRecodring] = useState(false);
+
+    const {
+        startRecording,
+        stopRecording,
+        togglePauseResume,
+        recordingBlob,
+        isRecording,
+        isPaused,
+        recordingTime,
+    } = useAudioRecorder();
+
+    useEffect(() => {
+        if (!recordingBlob) return;
+        console.log(recordingBlob);
+        // recordingBlob will be present at this point after 'stopRecording' has been called
+    }, [recordingBlob]);
     return (
         <div>
             <Button
@@ -51,10 +68,12 @@ function MainSpeak() {
                         setIsRecodring(false);
                         e.target.innerHTML = "중지";
                         e.target.classList.add("recording");
+                        startRecording();
                     } else {
                         setIsRecodring(true);
                         e.target.innerText = "말하기";
                         e.target.classList.remove("recording");
+                        stopRecording();
                     }
                 }}
             >
