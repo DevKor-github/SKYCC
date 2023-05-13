@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-speech-kit": "^3.0.1",
+    "styled-component": "^2.8.0",
+    "styled-components": "^6.0.0-rc.1"
+  }
+}
