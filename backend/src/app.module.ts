@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ReservationModule } from './reservation/reservation.module';
+import { ChatGptService } from './chatgpt/chatgpt.service';
 import { ConfigModule } from '@nestjs/config';
+import { ReservationModule } from './reservation/reservation.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Uploads3Module } from './uploads3/uploads3.module';
 
@@ -21,6 +22,6 @@ import { Uploads3Module } from './uploads3/uploads3.module';
     Uploads3Module,
   ],
   controllers: [],
-  providers: [],
+  providers: [ChatGptService],
 })
 export class AppModule {}
