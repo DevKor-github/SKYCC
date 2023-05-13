@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SttService } from './stt/stt.service';
 import { AppController } from './app.controller';
 import { Uploads3Service } from './uploads3/uploads3.service';
+import { Gets3Service } from './gets3/gets3.service';
 
 @Module({
   imports: [
@@ -23,6 +24,6 @@ import { Uploads3Service } from './uploads3/uploads3.service';
     ReservationModule,
   ],
   controllers: [AppController],
-  providers: [ChatGptService, SttService, Uploads3Service],
+  providers: [ChatGptService, SttService, Uploads3Service, Gets3Service],
 })
 export class AppModule {}
