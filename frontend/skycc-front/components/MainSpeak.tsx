@@ -8,7 +8,7 @@ import axios from "axios";
 import Image from "next/image";
 import human from "../public/human.svg";
 import Loading from "./Loading";
-import Router, { useRouter } from "next/navigation";
+import Router, { useRouter } from "next/router";
 
 const Button = styled.button`
     margin: 0 auto;
@@ -64,7 +64,7 @@ export function MainSpeak({ loading, setLoading }: Prop) {
         saveRecordedAudio,
         startRecording,
     } = useRecorder();
-
+    const [serverData, setServerData] = useState<any>();
     const router = useRouter();
     // MediaRecorder.isTypeSupported("audio/wav;codecs=MS_PCM");
 
@@ -85,6 +85,7 @@ export function MainSpeak({ loading, setLoading }: Prop) {
                 })
                 .then((r) => {
                     console.log(r);
+                    setServerData(r.data);
                     if (r.statusText === "Created") {
                         fetch("/api/slack");
                     }
@@ -93,12 +94,19 @@ export function MainSpeak({ loading, setLoading }: Prop) {
     }, [audioData]);
 
     useEffect(() => {
-        if (loading) {
-            setTimeout(() => {
-                router.push("/done");
-            }, 10000);
+        if (serverData) {
+            router.push({
+                pathname: "/done",
+                query: {
+                    depTime: serverData[0].departureTime,
+                    depLoc: serverData[0].departureLocation,
+                    arrTime: serverData[0].arrivalTime,
+                    arrLoc: serverData[0].arrivalLocation,
+                    price: serverData[0].price,
+                },
+            });
         }
-    }, [loading]);
+    }, [serverData]);
 
     return (
         <div>

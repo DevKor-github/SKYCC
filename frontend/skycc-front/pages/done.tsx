@@ -1,16 +1,87 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 export default function Done() {
+    const router = useRouter();
+    const [q, setQ] = useState(null);
+    const [ready, isReady] = useState(false);
+
+    const [parsedDep, setParsedDep] = useState();
+    const [parsedArr, setParsedArr] = useState();
+
+    useEffect(() => {
+        if (router.isReady) {
+            //@ts-ignore
+            setQ(router.query);
+        }
+    }, [router]);
+
+    useEffect(() => {
+        if (q) {
+            //@ts-ignore
+            setParsedDep(new Date(q.depTime));
+            //@ts-ignore
+            setParsedArr(new Date(q.arrTime));
+
+            isReady(true);
+        }
+    }, [q]);
     return (
         <div>
-            <H1>
-                예약이
-                <br />
-                완료되었습니다.
-            </H1>
+            {ready && (
+                <h2
+                    style={{
+                        fontSize: "28px",
+                        textAlign: "center",
+                        marginTop: "60px",
+                        lineHeight: "40px",
+                    }}
+                >
+                    {
+                        //@ts-ignore
+                        parsedDep.getMonth() + 1
+                    }
+                    월{" "}
+                    {
+                        //@ts-ignore
+                        parsedDep.getDate()
+                    }
+                    일 <br />
+                    {
+                        //@ts-ignore
+                        parsedDep.getHours() - 9 < 0
+                            ? //@ts-ignore
+                              parsedDep.getHours() + 24
+                            : //@ts-ignore
+                              parsedDep.getHours() - 9
+                    }
+                    시{" "}
+                    {
+                        //@ts-ignore
+                        parsedDep.getMinutes()
+                    }
+                    분에
+                    <br />
+                    {
+                        //@ts-ignore
+                        q.depLoc
+                    }
+                    에서{" "}
+                    {
+                        //@ts-ignore
+                        q.arrLoc
+                    }
+                    으로 가는 <br />
+                    기차표 예매를
+                    <br /> 자녀에게 요청했습니다.
+                    <br />
+                </h2>
+            )}
+
             <div
                 style={{
                     width: "286px",
