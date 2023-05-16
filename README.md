@@ -223,7 +223,7 @@
     <img src="assets/pay.png" height="600" >
 </p>
 
----
+<br/>
 
 # 확장가능성 1. 기능 확장 측면
 
@@ -290,7 +290,7 @@ STT 기술을 활용한 예약 서비스 자체는 다수 존재하나, UI/UX �
 
 직접적으로 예약 서비스, 특히 교통편 예약 기능 제공하는 서비스는 찾을 수 없었다. 다만, 코레일 자체에서 고령층 특화 키오스크를 개발하려는 시도는 존재하였다. 이러한 측면에서  본 서비스는 유일성을 지닌다.
 
----
+<br/>
 
 # 기타
 ### 발표자료 링크
@@ -298,7 +298,7 @@ STT 기술을 활용한 예약 서비스 자체는 다수 존재하나, UI/UX �
   <a href="https://docs.google.com/presentation/d/1uFlUNrmou4DCLL2DH4_KXVwoVK65CNbxprseqPBKJyc/edit?usp=sharing">https://docs.google.com/presentation/d/1uFlUNrmou4DCLL2DH4_KXVwoVK65CNbxprseqPBKJyc/edit?usp=sharing</a>
 </p>
 
----
+<br/>
 
 감사합니다.
 
