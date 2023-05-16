@@ -294,9 +294,8 @@ STT 기술을 활용한 예약 서비스 자체는 다수 존재하나, UI/UX �
 
 # 기타
 ### 발표자료 링크
-<p align="center">
-  <a href="https://docs.google.com/presentation/d/1uFlUNrmou4DCLL2DH4_KXVwoVK65CNbxprseqPBKJyc/edit?usp=sharing">https://docs.google.com/presentation/d/1uFlUNrmou4DCLL2DH4_KXVwoVK65CNbxprseqPBKJyc/edit?usp=sharing</a>
-</p>
+<a href="https://docs.google.com/presentation/d/1uFlUNrmou4DCLL2DH4_KXVwoVK65CNbxprseqPBKJyc/edit?usp=sharing">https://docs.google.com/presentation/d/1uFlUNrmou4DCLL2DH4_KXVwoVK65CNbxprseqPBKJyc/edit?usp=sharing</a>
+
 
 <br/>
 
